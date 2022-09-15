@@ -1,7 +1,9 @@
+const each = require("jest-each").default;
+
 const { showHowMuchILoveYou } = require('./adoration');
 
 describe("showHowMuchILoveYou", () => {
-    // it is an alias for 'test'
+    // 'it' is an alias for the 'test' keyword
     it("Exists", () => {
 
         expect(showHowMuchILoveYou).toBeDefined();
@@ -11,9 +13,11 @@ describe("showHowMuchILoveYou", () => {
         expect(showHowMuchILoveYou instanceof Function).toEqual(true); 
     })
 
-    it("Returns a string with the correct number of 'i's", () => {
-
-        expect(showHowMuchILoveYou(5)).toBe("I love you thiiiiis much!"); // 5 'i's
+    //Jest test: for each value in the list, test it
+    each([["I love you thiiiiis much!", 5],
+            ["I love you thiiis much!", 3]
+        ]).test("Returns %s when passed %s", (expected, amount) => {
+            expect(showHowMuchILoveYou(amount)).toBe(expected);
     })
 
     it("Throws an error when passed a string", () => {
